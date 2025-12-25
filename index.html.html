@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💖</title>
+
+<style>
+body{
+margin:0;
+min-height:100vh;
+background:#ffd6e8;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* Flowers */
+.flower{
+position:absolute;
+font-size:8vw;
+}
+#flower1{top:10px;left:10px;}
+#flower2{bottom:10px;right:10px;}
+
+/* Pages */
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+/* Welcome Box */
+.box{
+background:white;
+padding:30px;
+border-radius:20px;
+font-size:5vw;
+max-width:90%;
+cursor:pointer;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Question Page */
+#question{display:none;}
+
+button{
+padding:12px 26px;
+font-size:4vw;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:15px;
+}
+
+/* Buttons */
+#yes{background:#ff4d6d;color:white;}
+#no{background:#ccc;}
+
+/* Hearts */
+.hearts{
+position:absolute;
+font-size:6vw;
+animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+from{top:-10px;opacity:1;}
+to{top:110vh;opacity:0;}
+}
+
+/* Love Page */
+#love{
+display:none;
+font-size:10vw;
+color:#ff2d55;
+}
+</style>
+</head>
+
+<body>
+
+<div id="flower1" class="flower">🌸</div>
+<div id="flower2" class="flower">🌸</div>
+
+<!-- Welcome Page -->
+<div id="welcome" class="page">
+<div class="box" onclick="openQuestion()">Hey love 💖<br>Here is a surprise for you</div>
+</div>
+
+<!-- Question Page -->
+<div id="question" class="page">
+<div>
+<h1 style="font-size:6vw;">Will you be my Valentine? 💌</h1>
+<button id="yes" onclick="showLove()">Yes 💕</button>
+<button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙈</button>
+</div>
+</div>
+
+<!-- Love Page -->
+<div id="love" class="page">I LOVE YOU 💖</div>
+
+<script>
+function openQuestion(){
+document.getElementById("welcome").style.display="none";
+document.getElementById("question").style.display="flex";
+heartBlast();
+}
+
+function heartBlast(){
+setInterval(()=>{
+const h=document.createElement("div");
+h.className="hearts";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+},250);
+}
+
+/* Escaping NO Button */
+function moveNo(){
+const no = document.getElementById("no");
+const maxX = window.innerWidth - no.offsetWidth - 20;
+const maxY = window.innerHeight - no.offsetHeight - 20;
+const randX = Math.random() * maxX;
+const randY = Math.random() * maxY;
+no.style.position = "absolute";
+no.style.left = randX + "px";
+no.style.top = randY + "px";
+}
+
+function showLove(){
+document.getElementById("question").style.display="none";
+document.getElementById("love").style.display="flex";
+}
+</script>
+
+</body>
+</html>
